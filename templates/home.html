@@ -1,0 +1,49 @@
+<!--Tutorials a htmldog.com-->
+
+<!--Informem de que aquest document és HTML-->
+<!DOCTYPE html>
+
+<!--Afegim el primer tag de HTML. rOOT TAG-->
+<html>
+  <head>
+    <title>Dades de màquina</title>
+    <style>
+      h1 {
+        font-size: 40px;
+        font-family: Roboto;
+        font-weight: normal;
+        color: rgb(100,0,0)
+        text-align: cover;
+      }
+      #banner {
+        width: 100%;
+        height: 360px;
+        oobject: fit;
+    }
+      h2{
+        font-family: Roboto;
+        font-size: 32px;
+      }
+      #container {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Hola que tal</h1>
+      <img id= "banner" src="https://jovian-career copy.marcandres.repl.co/static/banner.jpg">
+      <h2>Sobre mí</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <h2>Posicions oberttees</h2>
+      <p>Aquesta posicion és molt bona i la recomanem</p>
+      <div style="text-align:center;">
+      <button>Contactan's</button>
+      </div>
+    </div>
+  </body>
+
+  <!--Intenem afegir icona favicon.ico pero no va-->
+  <link rel="shortcut icon" href="{{ url_for ('static', filename= 'https://jovian-career-copy.marcandres.repl.co/static/pepsi.ico')}}">
+</html>
