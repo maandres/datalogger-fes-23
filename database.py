@@ -1,5 +1,5 @@
-from sqlalchemy import create_engine, text
 import os
+from sqlalchemy import create_engine, text
 
 #Link de conexió de sqlAlchemy a DB núbol: https://docs.sqlalchemy.org/en/20/dialects/mysql.html
 #Codi copiat:
@@ -29,10 +29,26 @@ def load_jobs_from_db():
     for row in result:
       jobs.append({"title": row.nom,
                  "id": row.id,
-                 "requeriments": row.requeriments,
-                 "responsabilitats": row.responsabilitats,
-                 "localitzacio": row.localitzacio,
+                 "requirements": row.requeriments,
+                 "response": row.response,
+                 "location": row.localitzacio,
                  "salary": row.salari,
                  "currency": row.currency
                 })
     return jobs
+
+def load_job_from_db(id):
+  with engine.connect() as conn:
+    row = conn.execute(
+      text("select * from jobs where id = " + str(id)))
+    for row in row:
+      if row.nom:
+        job = {"title": row.nom,
+                "id": row.id,
+                "requirements": row.requeriments,
+                "response": row.response,
+                "location": row.localitzacio,
+                "salary": row.salari,
+                "currency": row.currency
+                }
+  return job
