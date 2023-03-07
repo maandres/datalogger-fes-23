@@ -1,0 +1,1 @@
+1. Quan som a application_submitted template, si l'usuari fa refresh, es reenvien les dades, pel que es guarden duplicats.
