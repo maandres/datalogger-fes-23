@@ -1,1 +1,22 @@
 1. Quan som a application_submitted template, si l'usuari fa refresh, es reenvien les dades, pel que es guarden duplicats.
+2. Aplicar timestamp a la base de dades
+3. Afegir validació de ser huma amb captcha al enviament del formulari (h-captcha)
+4. Rebre un mail quan s'ha enviat un formulari (mail-delivery)
+
+
+FUTURE WORK (segons el video)
+- Crear una interfaç d'identificació d'administradors per consultar les aplicacions que ha fet la gent
+- Permetre als administradosr marcar l'estat d'aplicacions de treball com a acceptades o denegades
+- Crear una interfaç d'autentificació per consultar l'estat d'una aplicació de treball 
+
+
+CODI A MILLORAR
+Maneig de resultat de consulta (2h56min):
+with engine.connect() as conn:
+    result = conn.execute(text("select * from jobs"))
+    result_all = result.all()
+    first_result = result_all[0]
+    column_names = result.keys() 
+    first_result_dict = dict(zip(column_names, first_result))
+    print(first_result_dict)
+
