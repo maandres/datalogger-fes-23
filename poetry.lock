@@ -78,6 +78,17 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "paho-mqtt"
+version = "1.6.1"
+description = "MQTT version 5.0/3.1.1 client class"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+proxy = ["pysocks"]
+
+[[package]]
 name = "sqlalchemy"
 version = "2.0.4"
 description = "Database Abstraction Library"
@@ -137,7 +148,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "5f5c48c452a37992595383d83b403e15b5ac27c3073be0fed4f51d6d57a0fa69"
+content-hash = "c25db355159ebff091f5f0424b93e192dc330ade2df0f70d54d533d58f9ee1c6"
 
 [metadata.files]
 click = []
@@ -147,6 +158,7 @@ greenlet = []
 itsdangerous = []
 jinja2 = []
 markupsafe = []
+paho-mqtt = []
 sqlalchemy = []
 typing-extensions = []
 werkzeug = []

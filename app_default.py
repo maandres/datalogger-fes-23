@@ -1,7 +1,6 @@
 #Importem la classe Flask dins de la llibreria flask
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, send_from_directory, jsonify, request
 from database import load_jobs_from_db, load_job_from_db, add_application_to_db
-from mqtt_proba import obtenir_valor_proba
 
 app = Flask(__name__)
 
@@ -11,7 +10,13 @@ app = Flask(__name__)
 #Definem la pagina d'inici (sense ruta extra) 
 @app.route("/")
 def hellow_world():
-  return render_template('home.html', company_name="Marcalberto")
+  jobs = load_jobs_from_db()
+  return render_template('home.html', jobs=jobs, company_name="holaquetal")
+
+#Intentem afegir icona favicon.ico pero no va
+@app.route('/favicon.ico')
+def favicon():
+  return send_from_directory(os.path.join(app.root_path,'static'), 'image/pepsi.ico', mimetype = 'image/vnd.microsoft.icon')
 
 @app.route("/api/jobs")
 def list_jobs():
@@ -47,11 +52,6 @@ def apply_to_job(id):
 def show_job_json(id):
   job = load_job_from_db(id)
   return jsonify(job)
-
-@app.route('/api/proba')
-def valor_de_proba():
-  valor = obtenir_valor_proba()
-  return render_template('proba.html', valor=valor)
 
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug=True)

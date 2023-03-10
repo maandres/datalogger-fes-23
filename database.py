@@ -1,5 +1,5 @@
 import os
-from sqlalchemy import create_engine, text, insert
+from sqlalchemy import create_engine, text
 
 #Link de conexió de sqlAlchemy a DB núbol: https://docs.sqlalchemy.org/en/20/dialects/mysql.html
 #Codi copiat:
