@@ -2,6 +2,7 @@
 from flask import Flask, render_template, jsonify, request
 from database import load_jobs_from_db, load_job_from_db, add_application_to_db
 from mqtt_proba import obtenir_valor_proba
+from temps import hora_minuts_segons_str, hora_minuts_segons_int
 
 app = Flask(__name__)
 
@@ -11,13 +12,19 @@ app = Flask(__name__)
 #Definem la pagina d'inici (sense ruta extra) 
 @app.route("/")
 def hellow_world():
-  return render_template('home.html', company_name="Marcalberto")
+  return render_template('home.html', company_name="Dataloggator")
 
 @app.route("/api/jobs")
 def list_jobs():
   jobs = load_jobs_from_db()
   
   return jsonify(jobs)
+
+@app.route("/proba/temps")
+def obtenir_hora_actual():
+  temps = hora_minuts_segons_int()
+  dict = {"temps": temps}
+  return dict
 
 @app.route('/job/<id>')
 def show_job(id):
@@ -53,5 +60,13 @@ def valor_de_proba():
   valor = obtenir_valor_proba()
   return render_template('proba.html', valor=valor)
 
+@app.route("/api/grafico")
+def grafico():
+  return render_template('grafico.html')
+
+@app.route('/user_proba/<username>')
+def profile(username):
+    return f'{username}\'okey'
+  
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug=True)

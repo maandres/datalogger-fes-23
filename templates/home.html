@@ -5,7 +5,7 @@
 
 <!--Afegim el primer tag de HTML. rOOT TAG-->
 <html>
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='python.png') }}">
   <head>
     <!--Importem classes de BootStrap-->
     {% include 'bootstrap.html'%}
@@ -21,34 +21,37 @@
     {% include 'nav.html' %}
     {% include 'banner.html' %}
 
-          <!-- have a button POST a click via AJAX https://htmx.org/docs/#introduction
-                     https://htmx.org/ -->
-    <button hx-get="/api/proba" hx-swap="outerHTML" hx-target="this">Click Me</button>
+
     
     <div class="container">
       <h1 class="text-center mt-2 mb-4">{{company_name}}</h1>
       <div class="row mb-5" style= "margin-bottom:16px">
         <div class="col-6">
-      <p class="lead">
-        Cinc de la matinada no esperaba que acabarem pels carrers de ciutadella tu dabant i jo darrere valencia banyada camals mullats valencia banyada carrer de la pau per terra glorieta semafor enutjat frenaba en sec i els dos a terra gobern militar i un tio en metralleta que ens mira molt mal coses que passen
+      <p class="lead mb-6">
+        "El peor de todos los pasos es el primero. Cuando estemos listos para una decisión importante, todas las fuerzas se concentran para evitar que sigamos adelante. Ya estamos acostumbradoes a esto. Es una vieja ley de la física: romper la inercia es difícil. Como no podemos cambiar la física, concentremos la energía extra y a si conseguiremos dasd el primer paso. Después el camino mismo ayuda"
+        <!-- PAULO COELHO -->
       </p>
+      <p class="fs-6 fst-italic">- PAULO COELHO -</p>
         </div>
         <div class="d-none d-md-block col-1"></div>
         <div class= "d-none d-md-block col-5">
-      <img src="/static/toad.jpg" style= "height:320px;border-radius:10px">
+      <img src="/static/gambare.jpg" style= "height:320px;border-radius:10px">
         </div>
       </div>
-      <h2 class="text-center mt-2 mb-4">Posicions del camasutra</h2>
+      <h2 class="text-center mt-2 mb-4">Partiendo la pana</h2>
       <div style="margin-bottom:16px;">
       </div>
       <div class="text-center">
-          <button class="btn btn-primary">MDLR</button>
-          <p class: "mt-4">Aquesta pagina esta feta perque la copis jdr</p>
+          <!-- have a button POST a click via AJAX https://htmx.org/docs/#introduction
+      https://htmx.org/ -->
+          <div hx-get="/proba/temps" hx-trigger="every 1s"></div>
+          <button hx-get="/api/proba" hx-swap="outerHTML" hx-target="this" class="btn btn-primary">Salvación</button>
+          <p class: "mt-4">El ignorante afirma, el sabio duda y reflexiona</p>
       </div> 
     </div>
     {% include 'footer.html' %}
   </body>
 
-  <!--Intenem afegir icona favicon.ico pero no va-->
+  <!--Posem la favicon de pepsi-->
   <link rel="shortcut icon" href="{{ url_for ('static', filename= 'https://jovian-career-copy.marcandres.repl.co/static/pepsi.ico')}}">
 </html>
