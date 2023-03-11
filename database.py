@@ -13,12 +13,7 @@ db_connection_string = os.environ['DB_CONNECTION_STRING']
 #Habilitem SSL usant el certificat ca obtingut de planet scale a new connection ->
 # -> tipo de conexion -> python -> main.py
 engine = create_engine(
-  db_connection_string,
-  connect_args={
-        "ssl": {
-            "ssl_ca": "/etc/ssl/cert.pem"
-        }
-    })
+  db_connection_string)
 
 #Consulta la sintaxi a https://docs.sqlalchemy.org/en/14/tutorial/dbapi_transactions.html#basics-of-statement-execution
 
@@ -54,6 +49,25 @@ def load_job_from_db(id):
                 }
   return job
 
+def obtenir_dades_actuals():
+  with engine.connect() as conn:
+    rows = conn.execute(text("SELECT * FROM actuals ORDER BY id DESC LIMIT 1"))
+    for row in rows:
+      actuals = {"Id": row.Id,
+                "actTorque": row.actTorque,
+                "actPower": row.actPower,
+                "actCurrent": row.actCurrent,
+                "actSpeed": row.actSpeed,
+#Dia i hora donen error. Format de tornada és:
+#'dia':dastetime.date(2023,3,9), 'hora': dateime.timedelta(seconds=54631),
+                #"dia": row.dia,
+                #"hora": row.hora,
+                "eix_habilitat": row.eix_habilitat,
+                "actConsigna": row.actConsigna,
+                "actTemperatura": row.actTemperatura
+                }
+  return actuals
+  
 # Us de la documentació:
 # https://docs.sqlalchemy.org/en/20/tutorial/dbapi_transactions.html
 def add_application_to_db(job_id, data):

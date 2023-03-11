@@ -1,8 +1,10 @@
 #Importem la classe Flask dins de la llibreria flask
 from flask import Flask, render_template, jsonify, request
 from database import load_jobs_from_db, load_job_from_db, add_application_to_db
+from database import obtenir_dades_actuals
 from mqtt_proba import obtenir_valor_proba
-from temps import hora_minuts_segons_str, hora_minuts_segons_int
+from temps import hora_minuts_segons_int
+from numero_a_actual import obtenir_nom_dada
 
 app = Flask(__name__)
 
@@ -14,17 +16,31 @@ app = Flask(__name__)
 def hellow_world():
   return render_template('home.html', company_name="Dataloggator")
 
-@app.route("/api/jobs")
-def list_jobs():
-  jobs = load_jobs_from_db()
-  
-  return jsonify(jobs)
+@app.route("/dataloggator")
+def dades_del_motor():
+  return render_template('dataloggator.html')
 
+  #for key, value in my_dict.items(): print(key,value)
+
+@app.route("/dataloggator/actuals/<numero>")
+def dada_actual_torque(numero):
+  nom_dada = obtenir_nom_dada(numero)
+  dades = obtenir_dades_actuals()
+  return render_template('dada_actual.html', dada = dades[nom_dada])
+  
 @app.route("/proba/temps")
 def obtenir_hora_actual():
   temps = hora_minuts_segons_int()
-  dict = {"temps": temps}
+  string = "temps"
+  dict = {string: temps}
   return dict
+
+@app.route("/proba/actuals")
+def ultim_registre_motor():
+  dades = obtenir_dades_actuals()
+  if not dades:
+    return "Not Found", 404
+  return jsonify(dades)
 
 @app.route('/job/<id>')
 def show_job(id):

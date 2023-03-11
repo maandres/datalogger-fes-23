@@ -21,9 +21,6 @@ def obtenir_valor_proba():
   
   #client.loop_forever()
   client.loop(timeout=10.0, max_packets=1)
-
-def obtener_valor():
-  return valor
   
   #data = "hola_funciono"
   #data = [10,3]

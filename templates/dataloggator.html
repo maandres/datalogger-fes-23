@@ -1,0 +1,103 @@
+<!--Tutorials a htmldog.com-->
+
+<!--Informem de que aquest document és HTML-->
+<!DOCTYPE html>
+
+<!--Afegim el primer tag de HTML. rOOT TAG-->
+<html>
+  <head>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='python.png') }}">
+    {% include 'bootstrap.html'%}
+    <title>SINAMICS G-120</title>
+    <script src="https://unpkg.com/htmx.org@1.8.6"></script>
+  </head>
+  <body>
+    {% include 'nav.html' %}
+    {% include 'banner.html' %}
+
+    <div class="container">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-100">
+            <div hx-get="/dataloggator/actuals/0" hx-trigger="every 1s"></div>
+            <div class="card-body">
+              <h5 class="card-title">Torque</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div hx-get="/dataloggator/actuals/1" hx-trigger="every 1s"></div>
+            <div class="card-body">
+              <h5 class="card-title">Potencia</h5>
+              <p class="card-text">This is a short card.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div hx-get="/dataloggator/actuals/2" hx-trigger="every 1s"></div>
+            <div class="card-body">
+              <h5 class="card-title">Amperatge</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div hx-get="/dataloggator/actuals/3" hx-trigger="every 1s"></div>
+            <div class="card-body">
+              <h5 class="card-title">Velocitat</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div hx-get="/dataloggator/actuals/4" hx-trigger="every 1s"></div>
+            <div class="card-body">
+              <h5 class="card-title">Eix habilitat</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div hx-get="/dataloggator/actuals/5" hx-trigger="every 1s"></div>
+            <div class="card-body">
+              <h5 class="card-title">Consgina</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <div hx-get="/dataloggator/actuals/6" hx-trigger="every 1s"></div>
+            <div class="card-body">
+              <h5 class="card-title">Temperatura</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <!--
+    <div class="container">
+      <div class="row mb-5" style= "margin-bottom:16px">
+        <div>
+          
+        </div>
+        <div>
+          
+        </div>
+      </div>
+    </div>
+    -->
+
+    
+    {% include 'footer.html' %}
+  </body>
+</html>
