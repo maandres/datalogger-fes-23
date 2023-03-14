@@ -1,10 +1,10 @@
 #Importem la classe Flask dins de la llibreria flask
 from flask import Flask, render_template, jsonify, request
-from database import load_jobs_from_db, load_job_from_db, add_application_to_db
+from database import load_job_from_db, add_application_to_db
 from database import obtenir_dades_actuals
 from mqtt_proba import obtenir_valor_proba
 from temps import hora_minuts_segons_int
-from numero_a_actual import obtenir_nom_dada
+from numero_a_actual import obtenir_nom_dada, arrodonir
 
 app = Flask(__name__)
 
@@ -26,7 +26,8 @@ def dades_del_motor():
 def dada_actual_torque(numero):
   nom_dada = obtenir_nom_dada(numero)
   dades = obtenir_dades_actuals()
-  return render_template('dada_actual.html', dada = dades[nom_dada])
+  valor = arrodonir(dades[nom_dada], numero)
+  return render_template('dada_actual.html', dada = valor)
   
 @app.route("/proba/temps")
 def obtenir_hora_actual():
