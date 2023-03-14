@@ -1,21 +1,28 @@
-#import pandas as pd
-
-#print(pd._version_)
-
-import matplotlib.pyplot as plt
 import numpy as np
-import time
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
-f= 10
-T = 1/f
+#inicializar la gràfica
+fig, ax = plt.subplots()
+#Dades x i y
+xdata, ydata = [], []
+#ro, son els punts vermells per mostrar a la gràfica
+ln, = ax.plot([], [], 'ro')
 
-t=np.linspace(0,5*T, 5*100)
+#limits eix x i eix y
+def init():
+    ax.set_xlim(0, 2*np.pi)
+    ax.set_ylim(-1, 1)
+    return ln,
 
-s1= 1*np.sin(2*np.pi*f+t)
+#Funció per actualitzar els punts
+def update(frame):
+    xdata.append(frame)
+    ydata.append(np.sin(frame))
+    ln.set_data(xdata, ydata)
+    return ln,
 
-fig, ax= plt.subplots()
-ax.plot(t,s1,t)
+#part de la gràfica
+ani = FuncAnimation(fig, update, frames=np.linspace(0, 2*np.pi, 128),
+                    init_func=init, blit=True)
 plt.show()
-
-#https://www.youtube.com/watch?v=KJwQzJ6SUU4
-#Video utilitzat
