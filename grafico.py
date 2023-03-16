@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+#from plotly.offline import plot
 
 #inicializar la gràfica
 fig, ax = plt.subplots()
@@ -26,3 +27,7 @@ def update(frame):
 ani = FuncAnimation(fig, update, frames=np.linspace(0, 2*np.pi, 128),
                     init_func=init, blit=True)
 plt.show()
+
+#how to pass data grphic python to html page
+#hem de mostrar les dades al html
+#plot(fig, filename='grafico.html')

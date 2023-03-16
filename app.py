@@ -1,10 +1,16 @@
 #Importem la classe Flask dins de la llibreria flask
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, Markup
 from database import load_job_from_db, add_application_to_db
 from database import obtenir_dades_actuals
 from mqtt_proba import obtenir_valor_proba
 from temps import hora_minuts_segons_int
 from numero_a_actual import obtenir_nom_dada, arrodonir
+
+#Probes de grafica video: https://www.youtube.com/watch?v=e68S9x3Rh_0
+from time import time
+from random import random
+import json
+from flask import url_for, redirect, make_response
 
 app = Flask(__name__)
 
@@ -12,6 +18,24 @@ app = Flask(__name__)
 #El que ve després és el path (exemple:/inicio)
 
 #Definem la pagina d'inici (sense ruta extra) 
+
+#Web pro per fer grafics en javascript: https://mdbootstrap.com/docs/b4/jquery/javascript/charts/
+#Obtenir directament dels sockets: https://www.donskytech.com/python-flask-websockets/?utm_content=cmp-true
+
+#HTMLX imortar del github: https://github.com/app-generator/sample-flask-htmlx
+
+@app.route("/proba/andres")
+def chart():
+  return render_template('chart.html')
+
+@app.route("/proba/data", methods=["GET","POST"])
+def andres_data():
+  data = [time() * 1000, random() * 100]
+  response = make_response(json.dumps(data))
+  response.content_type = 'application/json'
+  return response
+
+
 @app.route("/")
 def hellow_world():
   return render_template('home.html', company_name="Dataloggator")
@@ -77,6 +101,7 @@ def valor_de_proba():
   valor = obtenir_valor_proba()
   return render_template('proba.html', valor=valor)
 
+#Dash y flas: https://www.youtube.com/watch?v=fakRnkw0s9o
 @app.route("/api/grafico")
 def grafico():
   return render_template('grafico.html')
@@ -87,3 +112,4 @@ def profile(username):
   
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug=True)
+

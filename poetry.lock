@@ -211,6 +211,17 @@ docs = ["furo", "olefile", "sphinx (>=2.4)", "sphinx-copybutton", "sphinx-inline
 tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
 
 [[package]]
+name = "plotly"
+version = "5.13.1"
+description = "An open-source, interactive data visualization library for Python"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+tenacity = ">=6.2.0"
+
+[[package]]
 name = "prettytable"
 version = "3.6.0"
 description = "A simple Python library for easily displaying tabular data in a visually appealing ASCII table format"
@@ -325,6 +336,17 @@ pymysql = ["pymysql"]
 sqlcipher = ["sqlcipher3-binary"]
 
 [[package]]
+name = "tenacity"
+version = "8.2.2"
+description = "Retry code until it succeeds"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+doc = ["reno", "sphinx", "tornado (>=4.5)"]
+
+[[package]]
 name = "typing-extensions"
 version = "4.5.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
@@ -357,7 +379,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "c6a7463b603917acd0f874d92c01ff2516b84e5b75ce2f7d5eab4b7b0691fc46"
+content-hash = "df43f9d465493c3c3d3dabfdd436d96b1eadcf8b1c0cc0a9ef6ea087560fade0"
 
 [metadata.files]
 click = []
@@ -377,6 +399,7 @@ packaging = []
 paho-mqtt = []
 pandas = []
 pillow = []
+plotly = []
 prettytable = []
 pyecharts = []
 pyparsing = []
@@ -385,6 +408,7 @@ pytz = []
 simplejson = []
 six = []
 sqlalchemy = []
+tenacity = []
 typing-extensions = []
 wcwidth = []
 werkzeug = []
