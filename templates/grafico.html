@@ -1,9 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <html>
-    
-    </html>
-    
-
-  </head>
+<head>
+	<title>Mi gráfica</title>
+      {% include 'bootstrap.html'%}
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  	<script>
+		function refreshPage() {
+			location.reload();
+		}
+		setInterval(refreshPage, 1000); // refresh every 10 seconds
+	</script>
+</head>
+<body>
+    {% include 'nav.html' %}
+    {% include 'banner.html' %}
+	<div id="plot"></div>
+	<script>
+		// Datos de la gráfica
+		var x = [1, 2, 3, 4, 5];
+		var y = [2, 4, 6, 8, 10];
+		
+		// Crear la gráfica
+		var data = [{x: x, y: y, type: 'scatter'}];
+		var layout = {title: 'Mi gráfica', xaxis: {title: 'Eje X'}, yaxis: {title: 'Eje Y'}};
+		Plotly.newPlot('plot', data, layout);
+	</script>
+  {% include 'footer.html' %}
+</body>
+</html>

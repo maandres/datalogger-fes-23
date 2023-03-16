@@ -48,6 +48,7 @@
           <div hx-get="/proba/temps" hx-trigger="every 1s"></div> 
           <button hx-get="/api/proba" hx-swap="outerHTML" hx-target="this" class="btn btn-primary">Salvación</button>
           <p class: "mt-4">El ignorante afirma, el sabio duda y reflexiona</p>
+          <div hx-get="/api/grafico" hx-swap="outerHTML" hx-target="this" hx-trigger="every 1s"></div>
       </div> 
     </div>
     {% include 'footer.html' %}

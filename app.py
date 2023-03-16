@@ -1,5 +1,7 @@
+
+
 #Importem la classe Flask dins de la llibreria flask
-from flask import Flask, render_template, jsonify, request, Markup
+from flask import Flask, render_template, jsonify, request
 from database import load_job_from_db, add_application_to_db
 from database import obtenir_dades_actuals
 from mqtt_proba import obtenir_valor_proba
@@ -10,7 +12,6 @@ from numero_a_actual import obtenir_nom_dada, arrodonir
 from time import time
 from random import random
 import json
-from flask import url_for, redirect, make_response
 
 app = Flask(__name__)
 
@@ -24,6 +25,11 @@ app = Flask(__name__)
 
 #HTMLX imortar del github: https://github.com/app-generator/sample-flask-htmlx
 
+#Dash y flas: https://www.youtube.com/watch?v=fakRnkw0s9o
+@app.route("/api/grafico")
+def grafico():
+  return render_template('grafico.html')
+
 @app.route("/proba/andres")
 def chart():
   return render_template('chart.html')
@@ -34,7 +40,6 @@ def andres_data():
   response = make_response(json.dumps(data))
   response.content_type = 'application/json'
   return response
-
 
 @app.route("/")
 def hellow_world():
@@ -101,10 +106,7 @@ def valor_de_proba():
   valor = obtenir_valor_proba()
   return render_template('proba.html', valor=valor)
 
-#Dash y flas: https://www.youtube.com/watch?v=fakRnkw0s9o
-@app.route("/api/grafico")
-def grafico():
-  return render_template('grafico.html')
+
 
 @app.route('/user_proba/<username>')
 def profile(username):
