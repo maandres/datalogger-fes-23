@@ -49,9 +49,10 @@ def load_job_from_db(id):
                 }
   return job
 
-def obtenir_dades_actuals():
+def obtenir_dades_actuals(linies):
   with engine.connect() as conn:
-    rows = conn.execute(text("SELECT * FROM actuals ORDER BY id DESC LIMIT 1"))
+    rows = conn.execute(text("SELECT * FROM actuals ORDER BY id DESC LIMIT "+str(linies)))
+    array = []
     for row in rows:
       actuals = {"Id": row.Id,
                 "actTorque": row.actTorque,
@@ -66,7 +67,19 @@ def obtenir_dades_actuals():
                 "actConsigna": row.actConsigna,
                 "actTemperatura": row.actTemperatura
                 }
-  return actuals
+      array.append(actuals)
+  return array
+
+def obtenir_1_tipus_dada(linies,atributo):
+  array_dict = obtenir_dades_actuals(linies)
+  array_float = []
+  for dict in array_dict:
+    array_float.append(dict[atributo])
+
+    
+    #array_float
+  
+  return array_float # array = [1,2,3,4,5] (tan largo como "linies")
   
 # Us de la documentació:
 # https://docs.sqlalchemy.org/en/20/tutorial/dbapi_transactions.html
