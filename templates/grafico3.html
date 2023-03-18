@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mi gráfica</title>
+	{% include 'bootstrap.html'%}
+  
+
+  
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script>
+		function refreshGraph() {
+			var x = [1, 2, 3, 4, 5];                                                  //hora
+			var y = [Math.random()*10, Math.random()*10, Math.random()*10, Math.random()*10, Math.random()*10];                                                      //Generate random y values
+			var data = [{x: x, y: y, type: 'scatter'}];
+			var layout = {title: 'Mi gráfica', xaxis: {title: 'Eje X'}, yaxis: {title: 'Eje Y'}};
+			Plotly.newPlot('plot', data, layout);
+		}
+		setInterval(refreshGraph, 1000); // refresh graph every 10 seconds
+	</script>
+</head>
+<body>
+    {% include 'nav.html' %}
+    {% include 'banner.html' %}
+	<div id="plot"></div>
+    {% include 'footer.html' %}
+</body>
+</html>

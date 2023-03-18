@@ -56,7 +56,9 @@ def dades_del_motor():
 @app.route("/dataloggator/actuals/<numero>")
 def dada_actual_torque(numero):
   nom_dada = obtenir_nom_dada(numero)
-  dades = obtenir_dades_actuals()
+  array = obtenir_dades_actuals(1)
+  for row in array:
+    dades = row
   valor = arrodonir(dades[nom_dada], numero)
   return render_template('dada_actual.html', dada = valor)
   
