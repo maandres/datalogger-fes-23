@@ -10,7 +10,7 @@
 	<script>
 		function refreshGraph() {
 			var x = [1, 2, 3, 4, 5];                                                  //hora
-			var y = [Math.random()*10, Math.random()*10, Math.random()*10, Math.random()*10, Math.random()*10];                                                      //Generate random y values
+			var y = {{array}};                                                      //Generate random y values
 			var data = [{x: x, y: y, type: 'scatter'}];
 			var layout = {title: 'Mi gráfica', xaxis: {title: 'Eje X'}, yaxis: {title: 'Eje Y'}};
 			Plotly.newPlot('plot', data, layout);

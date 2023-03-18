@@ -26,6 +26,15 @@ app = Flask(__name__)
 #HTMLX imortar del github: https://github.com/app-generator/sample-flask-htmlx
 
 #Dash y flas: https://www.youtube.com/watch?v=fakRnkw0s9o
+
+
+#Ruta + parametro ("Id","actConsigna","actCurrent""actPower","actSpeed","actTemperatura",
+#"actTorque","eix_habilitat")
+@app.route("/proba/grafico/<parametro>")
+def grafico2(parametro):
+  array = obtenir_1_tipus_dada(5,parametro)
+  return render_template('grafico3.html', array=array)
+
 @app.route("/api/grafico")
 def grafico():
   #Funcion de obtener dadas de grafica
