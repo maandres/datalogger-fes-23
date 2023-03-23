@@ -12,13 +12,14 @@
 			var x = [1, 2, 3, 4, 5];                                                  //hora
 			var y = [Math.random()*10, Math.random()*10, Math.random()*10, Math.random()*10, Math.random()*10];                                                      //Generate random y values
 			var data = [{x: x, y: y, type: 'scatter'}];
-			var layout = {title: 'Mi gráfica', xaxis: {title: 'Eje X'}, yaxis: {title: 'Eje Y'}};
+			var layout = {title: 'Mi gráfica', xaxis: {title: 'Temps'}, yaxis: {title: 'Intensitat'}};
 			Plotly.newPlot('plot', data, layout);
 		}
 		setInterval(refreshGraph, 1000); // refresh graph every 10 seconds
 	</script>
 </head>
 <body>
+    {% include 'icon.html'%}
     {% include 'nav.html' %}
     {% include 'banner.html' %}
 	<div id="plot"></div>

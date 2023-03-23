@@ -6,7 +6,7 @@
 <!--Afegim el primer tag de HTML. rOOT TAG-->
 <html>
   <head>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='python.png') }}">
+    {% include 'icon.html'%}
     {% include 'bootstrap.html'%}
     <title>SINAMICS G-120</title>
     <script src="https://unpkg.com/htmx.org@1.8.6"></script>

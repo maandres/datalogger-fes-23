@@ -1,12 +1,10 @@
-
-
 #Importem la classe Flask dins de la llibreria flask
 from flask import Flask, render_template, jsonify, request
 from database import load_job_from_db, add_application_to_db
 from database import obtenir_dades_actuals, obtenir_1_tipus_dada
 from mqtt_proba import obtenir_valor_proba
 from temps import hora_minuts_segons_int
-from numero_a_actual import obtenir_nom_dada, arrodonir
+from numero_a_actual import obtenir_nom_dada, arrodonir, obtenir_titol_dada
 
 #Probes de grafica video: https://www.youtube.com/watch?v=e68S9x3Rh_0
 from time import time
@@ -30,16 +28,25 @@ app = Flask(__name__)
 
 #Ruta + parametro ("Id","actConsigna","actCurrent""actPower","actSpeed","actTemperatura",
 #"actTorque","eix_habilitat")
-@app.route("/proba/grafico/<parametro>")
+@app.route("/grafico/<parametro>")
 def grafico2(parametro):
   array = obtenir_1_tipus_dada(5,parametro)
-  return render_template('grafico3.html', array=array)
+  titol = obtenir_titol_dada(parametro)
+  return render_template('grafico3.html', array=array, titol=titol)
 
 @app.route("/api/grafico")
 def grafico():
   #Funcion de obtener dadas de grafica
   #dades = nombre de funcion()
   return render_template('grafico2.html')
+
+@app.route("/sign-in")
+def formulari_signin():
+  return render_template('sign-in.html')
+
+@app.route("/register")
+def formulari_registre():
+  return render_template('register.html')
 
 @app.route("/proba/andres")
 def chart():

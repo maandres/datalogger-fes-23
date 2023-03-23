@@ -24,6 +24,18 @@ def arrodonir(valor_in, numero):
   else:
     valor = valor_in
   return valor
+
+def obtenir_titol_dada(parametre):
+  dict = {
+    "actTorque":"Parell",
+    "actPower":"Potencia",
+    "actCurrent":"Amperatge",
+    "actSpeed":"Velocitat",
+    "eix_habilitat":"Servei",
+    "actConsigna":"Consigna",
+    "actTemperatura":"Temperatura"
+  }
+  return dict[parametre]
   
 
   

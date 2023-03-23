@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Mi gráfica</title>
+	<title>{{titol}}</title>
+  {% include 'icon.html'%}
 	{% include 'bootstrap.html'%}
-  
-
   
 	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 	<script>
@@ -12,7 +11,7 @@
 			var x = [1, 2, 3, 4, 5];                                                  //hora
 			var y = {{array}};                                                      //Generate random y values
 			var data = [{x: x, y: y, type: 'scatter'}];
-			var layout = {title: 'Mi gráfica', xaxis: {title: 'Eje X'}, yaxis: {title: 'Eje Y'}};
+			var layout = {title: "Gràfica", xaxis: {title: 'Eje X'}, yaxis: {title: 'Eje Y'}};
 			Plotly.newPlot('plot', data, layout);
 		}
 		setInterval(refreshGraph, 1000); // refresh graph every 10 seconds
