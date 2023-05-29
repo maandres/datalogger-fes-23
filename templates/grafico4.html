@@ -1,0 +1,12 @@
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script>
+		function refreshGraph() {
+			var x = [1, 2, 3, 4, 5];                                                  //hora
+			var y = {{array}};                                                      //Generate random y values
+			var data = [{x: x, y: y, type: 'scatter'}];
+			var layout = {title: "Gràfica", xaxis: {title: 'Eje X'}, yaxis: {title: 'Eje Y'}};
+			Plotly.newPlot('plot', data, layout);
+		}
+		setInterval(refreshGraph, 1000); // refresh graph every 10 seconds
+	</script>
+	<div id="plot"></div>

@@ -4,23 +4,12 @@
 	<title>{{titol}}</title>
   {% include 'icon.html'%}
 	{% include 'bootstrap.html'%}
-  
-	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-	<script>
-		function refreshGraph() {
-			var x = [1, 2, 3, 4, 5];                                                  //hora
-			var y = {{array}};                                                      //Generate random y values
-			var data = [{x: x, y: y, type: 'scatter'}];
-			var layout = {title: "Gràfica", xaxis: {title: 'Eje X'}, yaxis: {title: 'Eje Y'}};
-			Plotly.newPlot('plot', data, layout);
-		}
-		setInterval(refreshGraph, 1000); // refresh graph every 10 seconds
-	</script>
+  <script src="https://unpkg.com/htmx.org@1.8.6"></script>
 </head>
 <body>
     {% include 'nav.html' %}
     {% include 'banner.html' %}
-	<div id="plot"></div>
+	<div hx-get="/grafico/{{parametre}}/{{parametre}}" hx-trigger="every 1s"></div>
     {% include 'footer.html' %}
 </body>
 </html>

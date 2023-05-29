@@ -9,7 +9,7 @@
   <head>
     <!--Importem classes de BootStrap-->
     {% include 'bootstrap.html'%}
-    <title>Aupa Atletic</title>
+    <title>Datalogator</title>
 
     <script src="https://unpkg.com/htmx.org@1.8.6"></script>
 
@@ -28,17 +28,17 @@
       <div class="row mb-5" style= "margin-bottom:16px">
         <div class="col-6">
       <p class="lead mb-6">
-        "El peor de todos los pasos es el primero. Cuando estemos listos para una decisión importante, todas las fuerzas se concentran para evitar que sigamos adelante. Ya estamos acostumbradoes a esto. Es una vieja ley de la física: romper la inercia es difícil. Como no podemos cambiar la física, concentremos la energía extra y a si conseguiremos dasd el primer paso. Después el camino mismo ayuda"
+        Un enregistrador de dades és un sistema electrònic per a mesurar un cert nombre de variables i efectuar una tabulació escrita i/o registrar-les en un format adequat per a l'entrada a l'ordinador. Cada vegada més, però no totalment, estan basats en un processador digital
         <!-- PAULO COELHO -->
       </p>
-      <p class="fs-6 fst-italic">- PAULO COELHO -</p>
+      <a href="https://www.wikiwand.com/ca/Enregistrador_de_dades"><p class="fs-6 fst-italic">- Wikipedia -</p></a>
         </div>
         <div class="d-none d-md-block col-1"></div>
         <div class= "d-none d-md-block col-5">
-      <img src="/static/gambare.jpg" style= "height:320px;border-radius:10px">
+      <img src="/static/projecte.jpeg" style= "height:400px;border-radius:10px;width:100%;object-fit:cover;">
         </div>
       </div>
-      <h2 class="text-center mt-2 mb-4">Partiendo la pana</h2>
+      <h2 class="text-center mt-2 mb-4">Dades dinàmiques del web (format JSON)</h2>
       <div style="margin-bottom:16px;">
       </div>
       <div class="text-center">
@@ -46,12 +46,13 @@
       https://htmx.org/  -->
           <div hx-get="/proba/actuals" hx-trigger="every 1s"></div>
           <div hx-get="/proba/temps" hx-trigger="every 1s"></div> 
-          <button hx-get="/api/proba" hx-swap="outerHTML" hx-target="this" class="btn btn-primary">Salvación</button>
+          <!--button hx-get="/api/proba" hx-swap="outerHTML" hx-target="this" class="btn btn-primary"></button>
           <p class: "mt-4">El ignorante afirma, el sabio duda y reflexiona</p>
-          <div hx-get="/api/grafico" hx-swap="outerHTML" hx-target="this" hx-trigger="every 1s"></div>
+          <div hx-get="/api/grafico" hx-swap="outerHTML" hx-target="this" hx-trigger="every 1s"></div-->
       </div> 
     </div>
     {% include 'footer.html' %}
+    {% include 'scripts.html'%}
   </body>
 
   <!--Posem la favicon de pepsi-->

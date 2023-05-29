@@ -16,7 +16,7 @@ app = Flask(__name__)
 #L'arroba representa el "domain name"
 #El que ve després és el path (exemple:/inicio)
 
-#Definem la pagina d'inici (sense ruta extra) 
+#Definem la pagina d'inici (sense ruta extra)
 
 #Web pro per fer grafics en javascript: https://mdbootstrap.com/docs/b4/jquery/javascript/charts/
 #Obtenir directament dels sockets: https://www.donskytech.com/python-flask-websockets/?utm_content=cmp-true
@@ -30,9 +30,16 @@ app = Flask(__name__)
 #"actTorque","eix_habilitat")
 @app.route("/grafico/<parametro>")
 def grafico2(parametro):
-  array = obtenir_1_tipus_dada(5,parametro)
-  titol = obtenir_titol_dada(parametro)
-  return render_template('grafico3.html', array=array, titol=titol)
+  return render_template('grafico3.html', parametre=parametro)
+
+
+@app.route("/grafico/<parametro>/<parametro2>")
+def grafico3(parametro, parametro2):
+  array = obtenir_1_tipus_dada(5, parametro2)
+  titol = obtenir_titol_dada(parametro2)
+  print("hola")
+  return render_template('grafico4.html', array=array, titol=titol)
+
 
 @app.route("/api/grafico")
 def grafico():
@@ -40,34 +47,41 @@ def grafico():
   #dades = nombre de funcion()
   return render_template('grafico2.html')
 
+
 @app.route("/sign-in")
 def formulari_signin():
   return render_template('sign-in.html')
+
 
 @app.route("/register")
 def formulari_registre():
   return render_template('register.html')
 
+
 @app.route("/proba/andres")
 def chart():
   return render_template('chart.html')
 
-@app.route("/proba/data", methods=["GET","POST"])
+
+@app.route("/proba/data", methods=["GET", "POST"])
 def andres_data():
   data = [time() * 1000, random() * 100]
   response = make_response(json.dumps(data))
   response.content_type = 'application/json'
   return response
 
+
 @app.route("/")
 def hellow_world():
-  return render_template('home.html', company_name="Dataloggator")
+  return render_template('home.html', company_name="Monitoreig remot d'un variador de freqüència")
+
 
 @app.route("/dataloggator")
 def dades_del_motor():
   return render_template('dataloggator.html')
 
   #for key, value in my_dict.items(): print(key,value)
+
 
 @app.route("/dataloggator/actuals/<numero>")
 def dada_actual_torque(numero):
@@ -76,14 +90,16 @@ def dada_actual_torque(numero):
   for row in array:
     dades = row
   valor = arrodonir(dades[nom_dada], numero)
-  return render_template('dada_actual.html', dada = valor)
-  
+  return render_template('dada_actual.html', dada=valor)
+
+
 @app.route("/proba/temps")
 def obtenir_hora_actual():
   temps = hora_minuts_segons_int()
   string = "temps"
   dict = {string: temps}
   return dict
+
 
 @app.route("/proba/actuals")
 def ultim_registre_motor():
@@ -94,16 +110,20 @@ def ultim_registre_motor():
     return "Not Found", 404
   return jsonify(array)
 
+
 #-------------------------------------------------------
 
-@app.route("/api/array_dict/<numero>/<parametro>") #tambien  url
-def ultim_registre_moto(numero,parametro):
-  array = obtenir_1_tipus_dada(numero,parametro) # esta es   python
+
+@app.route("/api/array_dict/<numero>/<parametro>")  #tambien  url
+def ultim_registre_moto(numero, parametro):
+  array = obtenir_1_tipus_dada(numero, parametro)  # esta es   python
   if not array:
     return "Not Found", 404
   return jsonify(array)
 
+
 #--------------------------------------------------------
+
 
 @app.route('/job/<id>')
 def show_job(id):
@@ -112,12 +132,13 @@ def show_job(id):
     return "Not Found", 404
   return render_template("jobpage.html", job=job)
 
+
 @app.route("/job/<id>/apply", methods=["post"])
 def apply_to_job(id):
-    # Obtenim dades recollides a la url:
+  # Obtenim dades recollides a la url:
   #data = request.args
 
-    #Recollir dades del mètode:
+  #Recollir dades del mètode:
   data = request.form
   job = load_job_from_db(id)
   # store this in the DB
@@ -129,10 +150,12 @@ def apply_to_job(id):
 
   return render_template('application_submitted.html', job=job, data=data)
 
+
 @app.route('/api/job/<id>/')
 def show_job_json(id):
   job = load_job_from_db(id)
   return jsonify(job)
+
 
 @app.route('/api/proba')
 def valor_de_proba():
@@ -140,11 +163,10 @@ def valor_de_proba():
   return render_template('proba.html', valor=valor)
 
 
-
 @app.route('/user_proba/<username>')
 def profile(username):
-    return f'{username}\'okey'
-  
+  return f'{username}\'okey'
+
+
 if __name__ == "__main__":
   app.run(host='0.0.0.0', debug=True)
-
